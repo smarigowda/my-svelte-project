@@ -1,28 +1,10 @@
 <script>
   import ContactCard from "./ContactCard.svelte";
-  import CourseGoal from './CourseGoal.svelte';
-  export let name;
-  export let age;
-  export let upperName;
 
-
-  let jobTitle = "Software Developer";
-  let jobDescription = "Develop Automated Tests using JS Libraries";
-  let htmlText;
-  let courseGoal;
-
-  function incAge() {
-    age++;
-  }
-  const decAge = () => age--;
-  $: upperName = name.toUpperCase();
-
-  const changeName = () => {
-    name = "Roopa Santosh";
-  };
-  const nameInput = event => {
-    name = event.target.value;
-  };
+  let name = "Max";
+  let title = "Software Developer";
+  let image = "";
+  let description = "Develop Automated Tests";
 </script>
 
 <style>
@@ -54,24 +36,37 @@
     color: blueviolet;
     border: 1px solid blueviolet;
   }
+  #form {
+    width: 30rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
 </style>
 
 <div class="container">
-  <h1>Hello... {name.toUpperCase()}, {age}!</h1>
-  <h1>Reactive... {upperName}, {age}!</h1>
-  <h1>Welcome to Svelte...!</h1>
-  <button on:click={incAge}>Increase</button>
-  <button on:click={decAge}>Decrease</button>
+  <h1>
+    <strong>Section 3</strong>
+    - Conditionals and Loops !
+  </h1>
+  <div id="form">
+    <div class="form-control">
+      <label for="userName">User Name</label>
+      <input type="text" bind:value={name} id="userName" />
+    </div>
+    <div class="form-control">
+      <label for="jobTitle">Job Title</label>
+      <input type="text" bind:value={title} id="jobTitle" />
+    </div>
+    <div class="form-control">
+      <label for="image">Image URL</label>
+      <input type="text" bind:value={image} id="image" />
+    </div>
+    <div class="form-control">
+      <label for="desc">Description</label>
+      <textarea rows="3" bind:value={description} id="desc" />
+    </div>
+  </div>
 
-  <button on:click={changeName}>Change Name</button>
-  <hr />
+  <ContactCard userName={name} jobTitle={title} jobDescription={description} />
 
-  <textarea name="html" id="" cols="30" rows="10" bind:value={htmlText} />
-  <p>{@html htmlText}</p>
-  <hr />
-  <label for="name">Change Name:</label>
-  <input type="text" value={name} on:input={nameInput} />
-  <!-- <input type="text" bind:value={name} /> -->
-  <ContactCard userName={name} {jobTitle} {jobDescription} />
-  <CourseGoal courseGoal="Develop Svelte Apps"/>
 </div>
