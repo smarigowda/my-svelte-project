@@ -3,6 +3,9 @@
   export let name;
   export let age;
   export let upperName;
+  let jobTitle = 'Software Developer';
+  let jobDescription = 'Develop Automated Tests using JS Libraries'
+
   function incAge() {
     age++;
   }
@@ -59,8 +62,11 @@
   <button on:click={changeName}>Change Name</button>
 
   <hr />
-  <!-- <label for="name">Change Name</label> -->
-  <!-- <input type="text" value={name} on:input={nameInput}> -->
+  <label for="name">Change Name: </label>
+  <input type="text" value={name} on:input={nameInput}>
   <!-- <input type="text" bind:value={name} /> -->
-  <ContactCard />
+  <ContactCard
+    userName={name}
+    {jobTitle}
+    {jobDescription}/>
 </div>
