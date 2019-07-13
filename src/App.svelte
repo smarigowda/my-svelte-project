@@ -59,5 +59,6 @@
 
   <hr>
   <label for="name">Change Name</label>
-  <input type="text" value={name} on:input={nameInput}>
+  <!-- <input type="text" value={name} on:input={nameInput}> -->
+  <input type="text" bind:value={name}>
 </div>
