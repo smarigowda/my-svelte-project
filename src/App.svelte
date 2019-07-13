@@ -3,8 +3,9 @@
   export let name;
   export let age;
   export let upperName;
-  let jobTitle = 'Software Developer';
-  let jobDescription = 'Develop Automated Tests using JS Libraries'
+  let jobTitle = "Software Developer";
+  let jobDescription = "Develop Automated Tests using JS Libraries";
+  let htmlText;
 
   function incAge() {
     age++;
@@ -17,7 +18,6 @@
   };
   const nameInput = event => {
     name = event.target.value;
-    console.log(event);
   };
 </script>
 
@@ -60,13 +60,13 @@
   <button on:click={decAge}>Decrease</button>
 
   <button on:click={changeName}>Change Name</button>
-
   <hr />
-  <label for="name">Change Name: </label>
-  <input type="text" value={name} on:input={nameInput}>
+
+  <textarea name="html" id="" cols="30" rows="10" bind:value={htmlText} />
+  <p>{@html htmlText}</p>
+  <hr />
+  <label for="name">Change Name:</label>
+  <input type="text" value={name} on:input={nameInput} />
   <!-- <input type="text" bind:value={name} /> -->
-  <ContactCard
-    userName={name}
-    {jobTitle}
-    {jobDescription}/>
+  <ContactCard userName={name} {jobTitle} {jobDescription} />
 </div>
