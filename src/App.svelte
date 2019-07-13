@@ -11,6 +11,10 @@
   const changeName = () => {
     name = 'Roopa Santosh';
   }
+  const nameInput = event => {
+    name = event.target.value;
+    console.log(event);
+  }
 </script>
 
 <style>
@@ -52,4 +56,8 @@
   <button on:click={decAge}>Decrease</button>
 
   <button on:click={changeName}>Change Name</button>
+
+  <hr>
+  <label for="name">Change Name</label>
+  <input type="text" value={name} on:input={nameInput}>
 </div>
