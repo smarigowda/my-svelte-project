@@ -3,10 +3,16 @@
   export let name;
   export let age;
   export let upperName;
+
+
   let jobTitle = "Software Developer";
   let jobDescription = "Develop Automated Tests using JS Libraries";
   let htmlText;
+  let courseGoal;
 
+  function containsExcalmation(value) {
+    return value && value.indexOf('!') > 0;
+  }
   function incAge() {
     age++;
   }
@@ -50,6 +56,9 @@
     color: blueviolet;
     border: 1px solid blueviolet;
   }
+  .red {
+    color: red;
+  }
 </style>
 
 <div class="container">
@@ -69,4 +78,11 @@
   <input type="text" value={name} on:input={nameInput} />
   <!-- <input type="text" bind:value={name} /> -->
   <ContactCard userName={name} {jobTitle} {jobDescription} />
+
+  <hr>
+  <h1>Section 2 Assignment</h1>
+  <hr>
+  <label for="goad">Enter Course Goal.</label>
+  <input type="text" name="goal" bind:value={courseGoal}>
+  <h1 class:red={containsExcalmation(courseGoal)}>{courseGoal}</h1>
 </div>
