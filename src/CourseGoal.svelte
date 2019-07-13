@@ -1,9 +1,7 @@
 <script>
   export let courseGoal;
-
-  function containsExcalmation(value) {
-    return value && value.indexOf("!") > 0;
-  }
+  $: containsExcalmation = courseGoal && courseGoal.indexOf('!') > 0;
+  $: console.log(courseGoal && courseGoal.indexOf('!') > 0);
 </script>
 
 <style>
@@ -17,4 +15,4 @@
 <hr />
 <label for="goad">Enter Course Goal.</label>
 <input type="text" name="goal" bind:value={courseGoal} />
-<h1 class:red={containsExcalmation(courseGoal)}>{courseGoal}</h1>
+<h1 class:red={containsExcalmation}>{courseGoal}</h1>
