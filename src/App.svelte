@@ -92,10 +92,11 @@
     <ContactCard
       userName={name}
       jobTitle={title}
-      imageUrl={imageUrl}
+      {imageUrl}
       jobDescription={description} />
-  {/if}
-  {#if formState === 'invalid'}
-  <p>Some fields are empty</p>
+  {:else if formState === 'invalid'}
+    <p>Some fields are empty</p>
+  {:else}
+    <p>Please fill the form and click button</p>
   {/if}
 </div>
