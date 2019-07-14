@@ -3,13 +3,26 @@
 
   let name = "Max";
   let title = "Software Developer";
-  let image = "";
+  let imageUrl =
+    "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg";
   let description = "Develop Automated Tests";
 
-  let done = false;
+  let formState = "empty";
+
+  const isZero = length => {
+    return length === 0;
+  };
 
   function addContact() {
-    done = true;
+    let formElementsLength = [name, title, imageUrl, description].map(field => {
+      return field.trim().length;
+    });
+    if (formElementsLength.some(isZero)) {
+      formState = "invalid";
+    } else {
+      formState = "valid";
+    }
+    console.log(formState);
   }
 </script>
 
@@ -65,7 +78,7 @@
     </div>
     <div class="form-control">
       <label for="image">Image URL</label>
-      <input type="text" bind:value={image} id="image" />
+      <input type="text" bind:value={imageUrl} id="image" />
     </div>
     <div class="form-control">
       <label for="desc">Description</label>
@@ -75,10 +88,11 @@
 
   <button on:click={addContact}>Add a Contact Card</button>
 
-  {#if done}
+  {#if formState === 'valid'}
     <ContactCard
       userName={name}
       jobTitle={title}
+      imageUrl={imageUrl}
       jobDescription={description} />
   {/if}
 </div>

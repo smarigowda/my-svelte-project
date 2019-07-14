@@ -2,6 +2,7 @@
     export let userName;
     export let jobTitle;
     export let jobDescription;
+    export let imageUrl;
 </script>
 <style>
   .contact-card {
@@ -61,7 +62,7 @@
   <header>
     <div class="thumb">
       <img 
-      src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg"
+      src={imageUrl}
       alt="Profile Photo" />
     </div>
     <div class="user-data">
