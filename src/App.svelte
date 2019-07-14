@@ -5,6 +5,12 @@
   let title = "Software Developer";
   let image = "";
   let description = "Develop Automated Tests";
+
+  let done = false;
+
+  function addContact() {
+    done = true;
+  }
 </script>
 
 <style>
@@ -67,6 +73,12 @@
     </div>
   </div>
 
-  <ContactCard userName={name} jobTitle={title} jobDescription={description} />
+  <button on:click={addContact}>Add a Contact Card</button>
 
+  {#if done}
+    <ContactCard
+      userName={name}
+      jobTitle={title}
+      jobDescription={description} />
+  {/if}
 </div>
