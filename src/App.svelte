@@ -11,6 +11,10 @@
   let password = "";
   let passwordsList = [];
 
+  function removePassword(index) {
+    console.log("index = ", index);
+    passwordsList = passwordsList.filter((d, i) => i !== index);
+  }
   function addPasswordToList() {
     passwordsList = [...passwordsList, password];
     password = "";
@@ -157,6 +161,14 @@
   {#if password && password.length > 5 && password.length <= 10}
     <p>Password = {password}</p>
   {/if}
-
   <input type="password" bind:value={password} />
+  {#if passwordsList.length > 0}
+    <h2>List of Passwords:</h2>
+  {/if}
+  <ul>
+    {#each passwordsList as password, index}
+      <p on:click={removePassword.bind(this, index)}>{password}</p>
+    {/each}
+  </ul>
+  <hr />
 </div>
