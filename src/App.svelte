@@ -9,6 +9,8 @@
 
   let formState = "empty";
 
+  let contacts = [];
+
   const isZero = length => {
     return length === 0;
   };
@@ -21,8 +23,14 @@
       formState = "invalid";
     } else {
       formState = "valid";
+      let newContact = {
+        name,
+        title,
+        imageUrl,
+        description
+      };
+      contacts = [...contacts, newContact];
     }
-    console.log(formState);
   }
 </script>
 
@@ -88,15 +96,16 @@
 
   <button on:click={addContact}>Add a Contact Card</button>
 
-  {#if formState === 'valid'}
-    <ContactCard
-      userName={name}
-      jobTitle={title}
-      {imageUrl}
-      jobDescription={description} />
-  {:else if formState === 'invalid'}
+  {#if formState === 'invalid'}
     <p>Some fields are empty</p>
-  {:else}
-    <p>Please fill the form and click button</p>
   {/if}
+  {#each contacts as contact}
+    <ContactCard
+      userName={contact.name}
+      jobTitle={contact.title}
+      imageUrl={contact.imageUrl}
+      jobDescription={contact.description}
+    >
+    </ContactCard>
+  {/each}
 </div>
