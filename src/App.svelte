@@ -19,6 +19,10 @@
     contacts = contacts.splice(1);
   }
 
+  function deleteLast() {
+    contacts = contacts.slice(0, -1);
+  }
+
   function addContact() {
     let formElementsLength = [name, title, imageUrl, description].map(field => {
       return field.trim().length;
@@ -28,6 +32,7 @@
     } else {
       formState = "valid";
       let newContact = {
+        id: Math.random(),
         name,
         title,
         imageUrl,
@@ -100,11 +105,12 @@
 
   <button on:click={addContact}>Add a Contact Card</button>
   <button on:click={deleteFirst}>Delete First</button>
+  <button on:click={deleteLast}>Delete Last</button>
 
   {#if formState === 'invalid'}
     <p>Some fields are empty</p>
   {/if}
-  {#each contacts as contact, index}
+  {#each contacts as contact, index (contact.id)}
     <h1>Contact # {index}</h1>
     <ContactCard
       userName={contact.name}
