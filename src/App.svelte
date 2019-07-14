@@ -14,7 +14,7 @@
   const isZero = length => {
     return length === 0;
   };
-  
+
   function deleteFirst() {
     contacts = contacts.splice(1);
   }
@@ -77,6 +77,12 @@
     max-width: 100%;
     margin: 0 auto;
   }
+  input[type="text"] {
+    padding: 15px;
+  }
+  .hidden {
+    display: none;
+  }
 </style>
 
 <div class="container">
@@ -84,6 +90,8 @@
     <strong>Section 3</strong>
     - Conditionals and Loops !
   </h1>
+  <hr />
+
   <div id="form">
     <div class="form-control">
       <label for="userName">User Name</label>
@@ -104,8 +112,8 @@
   </div>
 
   <button on:click={addContact}>Add a Contact Card</button>
-  <button on:click={deleteFirst}>Delete First</button>
-  <button on:click={deleteLast}>Delete Last</button>
+  <button on:click={deleteFirst} class:hidden={contacts.length === 0}>Delete First</button>
+  <button on:click={deleteLast} class:hidden={contacts.length === 0}>Delete Last</button>
 
   {#if formState === 'invalid'}
     <p>Some fields are empty</p>
@@ -120,4 +128,7 @@
   {:else}
     <p>Add some contacts...</p>
   {/each}
+
+  <h1>End of Section Assignment:</h1>
+  <hr />
 </div>
