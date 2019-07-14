@@ -95,4 +95,7 @@
       imageUrl={imageUrl}
       jobDescription={description} />
   {/if}
+  {#if formState === 'invalid'}
+  <p>Some fields are empty</p>
+  {/if}
 </div>
