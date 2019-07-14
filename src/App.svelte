@@ -6,11 +6,16 @@
   let imageUrl =
     "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg";
   let description = "Develop Automated Tests";
-
   let formState = "empty";
-
   let contacts = [];
+  let password = "";
+  let passwordsList = [];
 
+  function addPasswordToList() {
+    passwordsList = [...passwordsList, password];
+    password = "";
+    console.log(passwordsList);
+  }
   const isZero = length => {
     return length === 0;
   };
@@ -53,6 +58,7 @@
   .container {
     margin: 0 auto;
     text-align: center;
+    width: 30rem;
   }
   button {
     outline: none;
@@ -79,6 +85,10 @@
   }
   input[type="text"] {
     padding: 15px;
+  }
+  input[type="password"] {
+    padding: 15px;
+    width: 30rem;
   }
   .hidden {
     display: none;
@@ -112,8 +122,12 @@
   </div>
 
   <button on:click={addContact}>Add a Contact Card</button>
-  <button on:click={deleteFirst} class:hidden={contacts.length === 0}>Delete First</button>
-  <button on:click={deleteLast} class:hidden={contacts.length === 0}>Delete Last</button>
+  <button on:click={deleteFirst} class:hidden={contacts.length === 0}>
+    Delete First
+  </button>
+  <button on:click={deleteLast} class:hidden={contacts.length === 0}>
+    Delete Last
+  </button>
 
   {#if formState === 'invalid'}
     <p>Some fields are empty</p>
@@ -131,4 +145,18 @@
 
   <h1>End of Section Assignment:</h1>
   <hr />
+  <label for="password">Enter Password</label>
+  {#if password.length > 0 && password.length < 5}
+    <p>Too Short</p>
+  {:else if password && password.length > 0 && password.length > 10}
+    <p>Too Long</p>
+  {:else if password && password.length > 0}
+    <button on:click={addPasswordToList}>Add Password to list</button>
+  {/if}
+
+  {#if password && password.length > 5 && password.length <= 10}
+    <p>Password = {password}</p>
+  {/if}
+
+  <input type="password" bind:value={password} />
 </div>
