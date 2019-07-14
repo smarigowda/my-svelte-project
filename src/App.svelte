@@ -14,6 +14,10 @@
   const isZero = length => {
     return length === 0;
   };
+  
+  function deleteFirst() {
+    contacts = contacts.splice(1);
+  }
 
   function addContact() {
     let formElementsLength = [name, title, imageUrl, description].map(field => {
@@ -95,17 +99,19 @@
   </div>
 
   <button on:click={addContact}>Add a Contact Card</button>
+  <button on:click={deleteFirst}>Delete First</button>
 
   {#if formState === 'invalid'}
     <p>Some fields are empty</p>
   {/if}
-  {#each contacts as contact}
+  {#each contacts as contact, index}
+    <h1>Contact # {index}</h1>
     <ContactCard
       userName={contact.name}
       jobTitle={contact.title}
       imageUrl={contact.imageUrl}
-      jobDescription={contact.description}
-    >
-    </ContactCard>
+      jobDescription={contact.description} />
+  {:else}
+    <p>Add some contacts...</p>
   {/each}
 </div>
