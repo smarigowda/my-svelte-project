@@ -9,7 +9,7 @@
   let formState = "empty";
   let contacts = [];
   let password = "";
-  $: passwordsList = [];
+  let passwordsList = [];
 
   function removePassword(index) {
     console.log("index = ", index);
