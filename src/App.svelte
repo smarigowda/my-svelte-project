@@ -9,7 +9,7 @@
   let formState = "empty";
   let contacts = [];
   let password = "";
-  let passwordsList = [];
+  $: passwordsList = [];
 
   function removePassword(index) {
     console.log("index = ", index);
@@ -166,8 +166,8 @@
     <h2>List of Passwords:</h2>
   {/if}
   <ul>
-    {#each passwordsList as password, index}
-      <p on:click={removePassword.bind(this, index)}>{password}</p>
+    {#each passwordsList as password, index (password)}
+      <p on:click={() => removePassword(index)}>{password}</p>
     {/each}
   </ul>
   <hr />
