@@ -3,9 +3,10 @@
 </script>
 
 <style lang="scss">
-  $color: red;
+  $color: blue;
   header {
     position: fixed;
+    font-weight: 100;
     width: 100%;
     top: 0;
     left: 0;
@@ -24,5 +25,5 @@
 </style>
 
 <header>
-  <h1>Hello, SCSS.....</h1>
+  <h1>Hello, Welcome to Svelte App...</h1>
 </header>
