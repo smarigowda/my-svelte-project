@@ -3,13 +3,6 @@
   import MeetupItem from "./Meetups/MeetupItem.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
 
-  // function reject(obj, keys) {
-  //   return Object.keys(obj)
-  //     .filter(k => !keys.includes(k))
-  //     .map(k => Object.assign({}, { [k]: obj[k] }))
-  //     .reduce((res, o) => Object.assign(res, o), {});
-  // }
-
   function reject(obj, keys) {
     return Object.assign(
       {},
@@ -44,14 +37,27 @@
     }
   ];
 
-  meetups = meetups.map(d => reject(d, ["id"]));
+  $: meetups = meetups.map(d => reject(d, ["id"]));
 
-  let title;
+  let title = '';
+  let subtitle = '';
+  let address = '';
+  let imageUrl = '';
+  let email = '';
+  let description = '';
 
-  $: console.log(title);
 
   function addMeetup() {
-    console.log("adding meetup to meetups array of objects...");
+    const newMeetup = {
+      id: Math.random().toString(),
+      title,
+      subtitle,
+      address,
+      imageUrl,
+      email,
+      description,
+    }
+    meetups = [...meetups, newMeetup];
   }
 </script>
 
@@ -70,23 +76,23 @@
     </div>
     <div class="form-control">
       <label for="subtitle">Subtitle</label>
-      <input type="text" id="subtitle" />
+      <input type="text" id="subtitle" bind:value={subtitle}/>
     </div>
     <div class="form-control">
       <label for="address">Address</label>
-      <input type="text" id="address" />
+      <input type="text" id="address" bind:value={address}/>
     </div>
     <div class="form-control">
       <label for="imageurl">Image URL</label>
-      <input type="text" id="imageurl" />
+      <input type="text" id="imageurl" bind:value={imageUrl}/>
     </div>
     <div class="form-control">
       <label for="email">E-Mail</label>
-      <input type="email" id="email" />
+      <input type="email" id="email" bind:value={email}/>
     </div>
     <div class="form-control">
       <label for="description">Description</label>
-      <textarea rows="3" type="text" id="description" />
+      <textarea rows="3" type="text" id="description" bind:value={description}/>
     </div>
     <button type="submit">Save</button>
   </form>
