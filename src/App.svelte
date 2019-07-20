@@ -1,7 +1,7 @@
 <script>
   import Header from "./UI/Header.svelte";
   import MeetupItem from "./Meetups/MeetupItem.svelte";
-  import MeetupGrid from './Meetups/MeetupGrid.svelte';
+  import MeetupGrid from "./Meetups/MeetupGrid.svelte";
 
   let meetups = [
     {
@@ -29,6 +29,19 @@
   ];
 </script>
 
-<Header />
-<MeetupGrid {meetups}/>
+<style>
+  #meetups {
+    margin-top: 5rem;
+  }
+</style>
 
+<Header />
+<main id="meetups">
+  <form action="">
+    <div class="form-control">
+      <label for="title">Title</label>
+      <input type="text" id="title">
+    </div>
+  </form>
+  <MeetupGrid {meetups} />
+</main>
