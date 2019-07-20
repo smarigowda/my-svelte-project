@@ -12,7 +12,7 @@
       imageUrl:
         "https://insights.dice.com/wp-content/uploads/2019/05/Coding-Bootcamp-Ratings-Dice.png",
       address: "27, Nerd Road, 34567 New Yark",
-      contactEmail: "code@test.com"
+      email: "code@test.com"
     },
     {
       id: "m2",
@@ -23,7 +23,7 @@
       imageUrl:
         "https://s3-us-west-1.amazonaws.com/swimstrongfoundation/wp-content/uploads/2017/10/12141903/freestyle.jpg",
       address: "27, Nerd Road, 34567 New Yark",
-      contactEmail: "swim@test.com"
+      email: "swim@test.com"
     }
   ];
 </script>
@@ -38,12 +38,6 @@
 <section id="meetups">
   {#each meetups as meetup}
     <MeetupItem
-      imageUrl={meetup.imageUrl}
-      title={meetup.title}
-      subtitle={meetup.subtitle}
-      description={meetup.description}
-      email={meetup.contactEmail}
-      address={meetup.address}
-       />
+      {...meetup} />
   {/each}
 </section>
