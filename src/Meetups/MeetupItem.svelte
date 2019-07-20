@@ -54,9 +54,15 @@
     font-size: 1.25rem;
     margin: 0;
   }
+
+  .meetup-item {
+    & + & {
+      margin-top: 2rem;
+    }
+  }
 </style>
 
-<article>
+<article class="meetup-item">
   <header>
     <h1>{title}</h1>
     <h2>{subtitle}</h2>
