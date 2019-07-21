@@ -2,6 +2,7 @@
   import Header from "./UI/Header.svelte";
   import MeetupItem from "./Meetups/MeetupItem.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
+  import Input from "./UI/Input.svelte";
 
   function reject(obj, keys) {
     return Object.assign(
@@ -39,15 +40,15 @@
 
   $: meetups = meetups.map(d => reject(d, ["id"]));
 
-  let title = '';
-  let subtitle = '';
-  let address = '';
-  let imageUrl = '';
-  let email = '';
-  let description = '';
-
+  let title = "";
+  let subtitle = "";
+  let address = "";
+  let imageUrl = "";
+  let email = "";
+  let description = "";
 
   function addMeetup() {
+    console.log("add meetup function...");
     const newMeetup = {
       id: Math.random().toString(),
       title,
@@ -55,8 +56,8 @@
       address,
       imageUrl,
       email,
-      description,
-    }
+      description
+    };
     meetups = [...meetups, newMeetup];
   }
 </script>
@@ -65,35 +66,60 @@
   #meetups {
     margin-top: 5rem;
   }
+  form {
+    max-width: 90%;
+    margin: auto;
+    width: 45rem;
+  }
 </style>
 
 <Header />
 <main id="meetups">
   <form on:submit|preventDefault={addMeetup}>
-    <div class="form-control">
-      <label for="title">Title</label>
-      <input type="text" id="title" bind:value={title} />
-    </div>
-    <div class="form-control">
-      <label for="subtitle">Subtitle</label>
-      <input type="text" id="subtitle" bind:value={subtitle}/>
-    </div>
-    <div class="form-control">
-      <label for="address">Address</label>
-      <input type="text" id="address" bind:value={address}/>
-    </div>
-    <div class="form-control">
-      <label for="imageurl">Image URL</label>
-      <input type="text" id="imageurl" bind:value={imageUrl}/>
-    </div>
-    <div class="form-control">
-      <label for="email">E-Mail</label>
-      <input type="email" id="email" bind:value={email}/>
-    </div>
-    <div class="form-control">
-      <label for="description">Description</label>
-      <textarea rows="3" type="text" id="description" bind:value={description}/>
-    </div>
+
+    <Input
+      id="title"
+      label="Title of Meetup"
+      value={title}
+      type="text"
+      on:input={event => (title = event.target.value)} />
+
+    <Input
+      id="subtitle"
+      label="Subtitle"
+      value={subtitle}
+      type="text"
+      on:input={event => (subtitle = event.target.value)} />
+
+    <Input
+      id="address"
+      label="Address"
+      value={address}
+      type="text"
+      on:input={event => (address = event.target.value)} />
+
+    <Input
+      id="imageUrl"
+      label="Image URL"
+      value={imageUrl}
+      type="text"
+      on:input={event => (imageUrl = event.target.value)} />
+
+    <Input
+      id="email"
+      label="E-Mail"
+      value={email}
+      type="email"
+      on:input={event => (email = event.target.value)} />
+
+    <Input
+      id="description"
+      label="Description"
+      value={description}
+      rows="3"
+      type="textarea"
+      on:input={event => (description = event.target.value)} />
+
     <button type="submit">Save</button>
   </form>
   <MeetupGrid {meetups} />

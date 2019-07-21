@@ -16,14 +16,16 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
+    background-image: linear-gradient(to left, #8370e6, #ee0cf6);
   }
   h1 {
     color: white;
     font-family: "Roboto Slab", serif;
     margin: 0;
   }
+
 </style>
 
 <header>
-  <h1>Hello, Welcome to Svelte App...</h1>
+  <h1>Welcome to Meet Up</h1>
 </header>

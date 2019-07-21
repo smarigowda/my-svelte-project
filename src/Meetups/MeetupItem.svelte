@@ -9,10 +9,12 @@
 
 <style lang="scss">
   article {
+    display: inline-block;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 5px;
     background: white;
     margin: 1rem;
+    width: 45%;
   }
 
   header,
