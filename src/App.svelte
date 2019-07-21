@@ -3,6 +3,7 @@
   import MeetupItem from "./Meetups/MeetupItem.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
   import Input from "./UI/Input.svelte";
+  import Button from './UI/Button.svelte';
 
   function reject(obj, keys) {
     return Object.assign(
@@ -120,7 +121,8 @@
       type="textarea"
       on:input={event => (description = event.target.value)} />
 
-    <button type="submit">Save</button>
+    <Button type="submit" caption="Save"></Button>
+
   </form>
   <MeetupGrid {meetups} />
 </main>

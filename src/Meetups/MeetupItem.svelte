@@ -1,4 +1,5 @@
 <script>
+  import Button from "../UI/Button.svelte";
   export let imageUrl;
   export let title;
   export let subtitle;
@@ -21,6 +22,10 @@
   .content,
   footer {
     padding: 1rem;
+  }
+
+  .content {
+    height: 6rem;
   }
 
   .image {
@@ -77,8 +82,8 @@
     <p>{description}</p>
   </div>
   <footer>
-    <button>Show Details</button>
-    <button>Favourite</button>
-    <a href="mailto:{email}">{email}</a>
+    <Button type="button" caption="Show Details" />
+    <Button type="button" caption="Favourite" mode="outline" />
+    <Button href="mailto:{email}" caption={email} />
   </footer>
 </article>
