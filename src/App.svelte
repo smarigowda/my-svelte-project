@@ -20,7 +20,7 @@
       price: 9.99
     }
   ];
-  $: console.log("App: termsAgreed", termsAgreed);
+
 </script>
 
 <style>
