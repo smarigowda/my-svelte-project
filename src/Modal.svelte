@@ -30,7 +30,6 @@
   onMount(() => {
     console.log("On Mount executed...");
   });
-
   onDestroy(() => {
     console.log("On Destroy executed...");
   });
