@@ -1,8 +1,12 @@
 <script>
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+  import { createEventDispatcher } from "svelte";
 
+  const dispatch = createEventDispatcher();
+  let termsAgreed = false;
+
+  $: console.log("Modal: termsAgreed", termsAgreed);
 </script>
+
 <style>
   .backdrop {
     position: fixed;
@@ -36,11 +40,12 @@ const dispatch = createEventDispatcher();
   <header>
     <slot name="header" />
   </header>
-  <div class="content">
-    <slot />
+  <div class="content" on:click={() => (termsAgreed = true)}>
+    <button>I Agree Terms</button>
   </div>
+  <slot {termsAgreed} />
   <footer>
     <slot name="footer" />
   </footer>
 </div>
-<div class="backdrop" on:click={() => dispatch('cancel')}/>
+<div class="backdrop" on:click={() => dispatch('cancel')} />

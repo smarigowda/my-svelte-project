@@ -4,6 +4,7 @@
   export let name;
   export let age;
   let showModal = false;
+  let termsAgreed = false;
 
   let productTitle = "A Book";
   function addToCart(event) {
@@ -19,7 +20,17 @@
       price: 9.99
     }
   ];
+  $: console.log("App: termsAgreed", termsAgreed);
 </script>
+
+<style>
+  button:disabled,
+  button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+</style>
 
 {#each products as product}
   <Product {...product} on:add-to-cart={addToCart} on:delete={removeFromCart} />
@@ -28,9 +39,11 @@
 <button on:click={() => (showModal = true)}>Show Modal</button>
 
 {#if showModal}
-  <Modal on:cancel={() => (showModal = false)}>
+  <Modal let:termsAgreed on:cancel={() => (showModal = false)}>
     <h1 slot="header">Hello !</h1>
     <h2>This works !!!</h2>
-    <button on:click={() => (showModal = false)}>Confirm</button>
+    <button on:click={() => (showModal = false)} disabled={!termsAgreed}>
+      Confirm
+    </button>
   </Modal>
 {/if}
