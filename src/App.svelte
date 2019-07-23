@@ -1,5 +1,5 @@
 <script>
-import { tick } from 'svelte';
+  import { tick } from "svelte";
   import Product from "./Product.svelte";
   import Modal from "./Modal.svelte";
   export let name;
@@ -22,26 +22,30 @@ import { tick } from 'svelte';
     }
   ];
 
-  let text = 'Select some text and hit the tab key to toggle uppercase';
+  let text = "Select some text and hit the tab key to toggle uppercase";
 
-async function handleKeydown(event) {
-  if(event.which !== 9) return;
-  console.log('tab key pressed...');
-  event.preventDefault();
-  console.dir(this);
-  const { value, selectionStart, selectionEnd } = this;
-  const selection = value.slice(selectionStart, selectionEnd);
-  const replacement = /[a-z]/.test(selection) ? selection.toUpperCase() : selection.toLowerCase();
-  console.log(replacement);
+  async function handleKeydown(event) {
+    if (event.which !== 9) return;
+    console.log("tab key pressed...");
+    event.preventDefault();
+    console.dir(this);
+    const { value, selectionStart, selectionEnd } = this;
+    const selection = value.slice(selectionStart, selectionEnd);
+    const replacement = /[a-z]/.test(selection)
+      ? selection.toUpperCase()
+      : selection.toLowerCase();
+    console.log(replacement);
 
-  text = value.slice(0, selectionStart) + replacement + value.slice(selectionEnd);
+    text =
+      value.slice(0, selectionStart) + replacement + value.slice(selectionEnd);
 
-  await tick(); // DOM update (which is the next micro task) will be completed when this gets resolved.
-  // without tick, the below code runs before the DOM update.
-  this.selectionStart = selectionStart;
-  this.selectionEnd = selectionEnd;
+    // DOM update (which is the next micro task) will be completed when this gets resolved.
+    await tick();
 
-}
+    // without tick, the below code runs before the DOM update.
+    this.selectionStart = selectionStart;
+    this.selectionEnd = selectionEnd;
+  }
 </script>
 
 <style>
@@ -69,4 +73,4 @@ async function handleKeydown(event) {
   </Modal>
 {/if}
 
-<textarea rows="10" value={text} on:keydown={handleKeydown}></textarea>
+<textarea rows="10" value={text} on:keydown={handleKeydown} />
