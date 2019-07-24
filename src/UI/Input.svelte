@@ -3,7 +3,7 @@
   export let label;
   export let value;
   export let type;
-  export let rows;
+  export let rows = null;
 </script>
 
 <style>
