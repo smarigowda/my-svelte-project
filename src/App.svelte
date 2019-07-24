@@ -124,5 +124,5 @@
     <Button type="submit" caption="Save"></Button>
 
   </form>
-  <MeetupGrid {meetups} />
+  <MeetupGrid {meetups} on:togglefavourite={() => console.log('[ App ] togglefavourite event is captured.')}/>
 </main>
