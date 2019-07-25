@@ -75,16 +75,17 @@
   .outline.success {
     border-color: #01a129;
     color: #01a129;
+    background: #c2ffd1;
   }
 
   .outline.success:hover,
   .outline.success:active {
-    background: #c2ffd1;
+    background: #fffbc2;
   }
 </style>
 
 {#if href}
   <a {href}>{caption}</a>
 {:else}
-  <button {type} class={mode} on:click>{caption}</button>
+  <button {type} class="{mode}" on:click>{caption}</button>
 {/if}
