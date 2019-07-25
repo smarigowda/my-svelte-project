@@ -1,6 +1,7 @@
 <script>
   import Button from "../UI/Button.svelte";
-  import { createEventDispatcher } from 'svelte';
+  import Badge from "../UI/Badge.svelte";
+  import { createEventDispatcher } from "svelte";
   export let imageUrl;
   export let title;
   export let subtitle;
@@ -76,7 +77,12 @@
 
 <article class="meetup-item">
   <header>
-    <h1>{title}</h1>
+    <h1>
+      {title}
+      {#if isFavourite}
+        <Badge>Favourite</Badge>
+      {/if}
+    </h1>
     <h2>{subtitle}</h2>
     <p>{address}</p>
   </header>
@@ -88,7 +94,11 @@
   </div>
   <footer>
     <Button type="button" caption="Show Details" />
-    <Button type="button" caption="Favourite" mode="outline {isFavourite? 'success' : null}" on:click={() => dispatch('togglefavourite', { id })} />
+    <Button
+      type="button"
+      caption="Favourite"
+      mode="outline {isFavourite ? 'success' : null}"
+      on:click={() => dispatch('togglefavourite', { id })} />
     <Button href="mailto:{email}" caption={email} />
   </footer>
 </article>
