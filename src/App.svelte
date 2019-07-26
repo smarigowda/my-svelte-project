@@ -85,13 +85,16 @@
 
 <Header />
 <main id="meetups">
-  <Button
-    type="button"
-    caption="{editMeetup? 'Close Form' : 'New Meetup'}";
-    on:click={() => {
-      editMeetup = !editMeetup;
-    }} />
-  <br />
+  {#if !editMeetup}
+    <Button
+      type="button"
+      caption={editMeetup ? 'Close Form' : 'New Meetup'}
+      ;
+      on:click={() => {
+        editMeetup = !editMeetup;
+      }} />
+    <br />
+  {/if}
   {#if editMeetup}
     <EditMeetup on:addmeetup={addMeetup} />
   {/if}
