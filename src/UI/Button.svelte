@@ -85,7 +85,11 @@
 </style>
 
 {#if href}
-  <a {href}>{caption}</a>
+  <a {href}>
+    <slot />
+  </a>
 {:else}
-  <button {type} class="{mode}" on:click>{caption}</button>
+  <button {type} class={mode} on:click>
+    <slot />
+  </button>
 {/if}

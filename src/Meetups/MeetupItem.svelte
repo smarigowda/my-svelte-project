@@ -93,12 +93,13 @@
     <p>{description}</p>
   </div>
   <footer>
-    <Button type="button" caption="Show Details" />
+    <Button type="button">Show Details</Button>
     <Button
       type="button"
-      caption="Favourite"
       mode="outline {isFavourite ? 'success' : null}"
-      on:click={() => dispatch('togglefavourite', { id })} />
-    <Button href="mailto:{email}" caption={email} />
+      on:click={() => dispatch('togglefavourite', { id })}>
+      Favourite
+    </Button>
+    <Button href="mailto:{email}">{email}</Button>
   </footer>
 </article>

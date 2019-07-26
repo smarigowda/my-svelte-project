@@ -81,19 +81,23 @@
   #meetups {
     margin-top: 5rem;
   }
+  .meetup-controls {
+    margin: 1rem;
+  }
 </style>
 
 <Header />
 <main id="meetups">
   {#if !editMeetup}
-    <Button
-      type="button"
-      caption={editMeetup ? 'Close Form' : 'New Meetup'}
-      ;
-      on:click={() => {
-        editMeetup = !editMeetup;
-      }} />
-    <br />
+    <div class="meetup-controls">
+      <Button
+        type="button"
+        on:click={() => {
+          editMeetup = !editMeetup;
+        }}>
+        {editMeetup ? 'Close Form' : 'New Meetup'}
+      </Button>
+    </div>
   {/if}
   {#if editMeetup}
     <EditMeetup on:addmeetup={addMeetup} />
