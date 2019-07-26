@@ -2,7 +2,7 @@
   import Header from "./UI/Header.svelte";
   import MeetupItem from "./Meetups/MeetupItem.svelte";
   import MeetupGrid from "./Meetups/MeetupGrid.svelte";
-  import EditMeetup from './Meetups/EditMeetup.svelte';
+  import EditMeetup from "./Meetups/EditMeetup.svelte";
   import Input from "./UI/Input.svelte";
   import Button from "./UI/Button.svelte";
 
@@ -52,6 +52,8 @@
   let description = "";
   let id = "";
 
+  let editMeetup = false;
+
   function addMeetup(event) {
     console.log("add meetup function...");
     const newMeetup = {
@@ -60,19 +62,19 @@
     };
     meetups = [...meetups, newMeetup];
     console.log(meetups);
+    editMeetup = !editMeetup;
   }
 
   const handleToggleFavourite = event => {
     console.log(event);
-    meetups = meetups.map(meetup=> {
-      if(meetup.id === event.detail.id) {
+    meetups = meetups.map(meetup => {
+      if (meetup.id === event.detail.id) {
         meetup.isFavourite = !meetup.isFavourite;
       }
       return meetup;
     });
-    console.log('handleToggleFavourite', meetups);
+    console.log("handleToggleFavourite", meetups);
   };
-  
 </script>
 
 <style>
@@ -83,6 +85,15 @@
 
 <Header />
 <main id="meetups">
-  <EditMeetup on:addmeetup={addMeetup}/>
+  <Button
+    type="button"
+    caption="{editMeetup? 'Close Form' : 'New Meetup'}";
+    on:click={() => {
+      editMeetup = !editMeetup;
+    }} />
+  <br />
+  {#if editMeetup}
+    <EditMeetup on:addmeetup={addMeetup} />
+  {/if}
   <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} />
 </main>
