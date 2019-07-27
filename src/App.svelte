@@ -5,6 +5,7 @@
   import EditMeetup from "./Meetups/EditMeetup.svelte";
   import Input from "./UI/Input.svelte";
   import Button from "./UI/Button.svelte";
+  import Modal from "./UI/Modal.svelte";
 
   // function reject(obj, keys) {
   //   return Object.assign(
@@ -88,6 +89,7 @@
 
 <Header />
 <main id="meetups">
+
   {#if !editMeetup}
     <div class="meetup-controls">
       <Button
@@ -100,7 +102,7 @@
     </div>
   {/if}
   {#if editMeetup}
-    <EditMeetup on:addmeetup={addMeetup} />
+    <EditMeetup on:addmeetup={addMeetup} on:cancelmodal={() => editMeetup = false}/>
   {/if}
   <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} />
 </main>
