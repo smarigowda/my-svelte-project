@@ -5,8 +5,10 @@
   let number;
   let selectedOption = 2;
   let fruitsChecked = [];
+  let radioOptionSelected = 'banana';
   let fruits = ["apple", "orange", "banana"];
   $: console.log("value = ", value);
+  $: console.log("radioOptionSelected = ", radioOptionSelected);
   $: console.log("number =", number);
   $: console.log("selectedOption =", selectedOption);
   $: console.log("fruitsChecked =", fruitsChecked);
@@ -14,10 +16,10 @@
 
 <style lang="scss">
   .container {
-      outline: none;
-      & input {
-        color: blue;
-      }
+    outline: none;
+    & input {
+      color: blue;
+    }
   }
 </style>
 
@@ -37,10 +39,17 @@
     <label for="">
       <input
         type="checkbox"
-        name={fruit}
+        name="fruit"
         value={fruit}
         bind:group={fruitsChecked} />
       {fruit}
+    </label>
+  {/each}
+  <h1>Radio Group Input</h1>
+  {#each fruits as fruit}
+    <label for="">
+      {fruit}
+      <input type="radio" name="fruits" value={fruit} bind:group={radioOptionSelected}/>
     </label>
   {/each}
 </div>
