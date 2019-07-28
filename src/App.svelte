@@ -3,15 +3,19 @@
   import Toggle from "./Toggle.svelte";
   let value = "";
   let number;
-  let selectedOption = 'apple';
+  let selectedOption = '---select an option from the list ---';
   let fruitsChecked = [];
   let radioOptionSelected = 'banana';
-  let fruits = ["apple", "orange", "banana"];
+  let fruits = ["---select an option from the list ---", "apple", "orange", "banana"];
   $: console.log("value = ", value);
   $: console.log("radioOptionSelected = ", radioOptionSelected);
   $: console.log("number =", number);
   $: console.log("selectedOption =", selectedOption);
   $: console.log("fruitsChecked =", fruitsChecked);
+  let inputRef;
+  function getValueUsingRef() {
+    console.log(inputRef.value);
+  }
 </script>
 
 <style lang="scss">
@@ -58,4 +62,8 @@
     <option value={fruit}>{fruit}</option>
   {/each}
   </select>
+  <hr>
+  <h1>this binding</h1>
+  <input type="text" bind:this={inputRef}>
+  <button on:click={getValueUsingRef}>Show</button>
 </div>
