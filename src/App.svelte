@@ -1,6 +1,7 @@
 <script>
   import CustomInput from "./CustomInput.svelte";
   import Toggle from "./Toggle.svelte";
+  let customInputReference;
   let value = "";
   let number;
   let selectedOption = '---select an option from the list ---';
@@ -12,6 +13,7 @@
   $: console.log("number =", number);
   $: console.log("selectedOption =", selectedOption);
   $: console.log("fruitsChecked =", fruitsChecked);
+  $: console.log('customInputReference', customInputReference);
   let inputRef;
   function getValueUsingRef() {
     console.log(inputRef.value);
@@ -32,7 +34,9 @@
   <!-- <input type="text" bind:value /> -->
   <hr />
   <label for="custominput">Custom Input</label>
-  <CustomInput bind:value />
+  <CustomInput bind:value bind:this={customInputReference} on:input={() => {
+    console.log('--->', customInputReference.log());
+  }}/>
   <!-- <Toggle bind:choosenOption={selectedOption} /> -->
   <hr />
   <label for="">Number Input</label>
