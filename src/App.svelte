@@ -4,18 +4,20 @@
   let value = "";
   let number;
   let selectedOption = 2;
-  let orangeChecked = true;
+  let fruitsChecked = [];
+  let fruits = ["apple", "orange", "banana"];
   $: console.log("value = ", value);
   $: console.log("number =", number);
   $: console.log("selectedOption =", selectedOption);
-  $: console.log("orangeChecked =", orangeChecked);
+  $: console.log("fruitsChecked =", fruitsChecked);
 </script>
 
 <style lang="scss">
   .container {
-    & > input {
       outline: none;
-    }
+      & input {
+        color: blue;
+      }
   }
 </style>
 
@@ -30,9 +32,15 @@
   <label for="">Number Input</label>
   <input type="number" bind:value={number} />
   <hr />
-  <h1>Checkbox</h1>
-  <label for="">
-    <input type="checkbox" bind:checked={orangeChecked}/>
-    Check Orange
-  </label>
+  <h1>Checkboxes in Groups</h1>
+  {#each fruits as fruit}
+    <label for="">
+      <input
+        type="checkbox"
+        name={fruit}
+        value={fruit}
+        bind:group={fruitsChecked} />
+      {fruit}
+    </label>
+  {/each}
 </div>
