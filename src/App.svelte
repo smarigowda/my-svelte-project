@@ -14,9 +14,20 @@
   $: console.log("selectedOption =", selectedOption);
   $: console.log("fruitsChecked =", fruitsChecked);
   $: console.log('customInputReference', customInputReference);
+  let validationMessage = '';
+  let emailValue ='';
+  $: console.log('emailValue', emailValue);
+
   let inputRef;
   function getValueUsingRef() {
     console.log(inputRef.value);
+  }
+  function validateEmail() {
+    if(!emailValue.includes('@')) {
+      validationMessage = 'enter a valid email address';
+    } else {
+      validationMessage = '';
+    }
   }
 </script>
 
@@ -70,4 +81,9 @@
   <h1>this binding</h1>
   <input type="text" bind:this={inputRef}>
   <button on:click={getValueUsingRef}>Show</button>
+  <hr>
+  <h1>EMail Validation...</h1>
+  <label for="">EMail</label>
+  <label for="">{validationMessage}</label>
+  <input type="email" bind:value={emailValue} on:input={validateEmail}>
 </div>
