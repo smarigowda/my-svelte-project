@@ -1,5 +1,6 @@
 <script>
   import CustomInput from "./CustomInput.svelte";
+  import Toggle from './Toggle.svelte';
   let value = "";
   $: console.log("value = ", value);
 </script>
@@ -18,4 +19,5 @@
   <hr />
   <label for="custominput">Custom Input</label>
   <CustomInput bind:value/>
+  <Toggle />
 </div>
