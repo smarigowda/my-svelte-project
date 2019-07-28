@@ -3,7 +3,7 @@
   import Toggle from "./Toggle.svelte";
   let value = "";
   let number;
-  let selectedOption = 2;
+  let selectedOption = 'apple';
   let fruitsChecked = [];
   let radioOptionSelected = 'banana';
   let fruits = ["apple", "orange", "banana"];
@@ -29,7 +29,7 @@
   <hr />
   <label for="custominput">Custom Input</label>
   <CustomInput bind:value />
-  <Toggle bind:choosenOption={selectedOption} />
+  <!-- <Toggle bind:choosenOption={selectedOption} /> -->
   <hr />
   <label for="">Number Input</label>
   <input type="number" bind:value={number} />
@@ -52,4 +52,10 @@
       <input type="radio" name="fruits" value={fruit} bind:group={radioOptionSelected}/>
     </label>
   {/each}
+  <h1>Select Option Input</h1>
+  <select bind:value={selectedOption}>
+  {#each fruits as fruit}
+    <option value={fruit}>{fruit}</option>
+  {/each}
+  </select>
 </div>
