@@ -1,18 +1,12 @@
 <script>
   import CartItem from "./CartItem.svelte";
+  import cartItems from './cart-store.js';
+  let items;
 
-  export let items = [
-    {
-      id: "p1",
-      title: "Test",
-      price: 9.99
-    },
-    {
-      id: "p2",
-      title: "Test",
-      price: 9.99
-    }
-  ];
+  cartItems.subscribe(data => {
+      console.log(data);
+      items = data;
+  });
 </script>
 
 <style>
