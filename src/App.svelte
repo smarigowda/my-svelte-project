@@ -9,7 +9,7 @@
   };
 </script>
 
-<Button on:click={toggleCart}>Toggle Cart</Button>
+<Button on:click={toggleCart} mode="">Toggle Cart</Button>
 {#if showCart}
   <Cart />
 {/if}

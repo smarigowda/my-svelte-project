@@ -11,6 +11,11 @@ const cart = writable([
     title: "Test",
     price: 9.99
   }
-]);
+], () => {
+  console.log('Got a subscriber....');
+  return () => {
+    console.log('No more subs...');
+  }
+});
 
 export default cart;

@@ -57,6 +57,6 @@
     <p>{description}</p>
   </div>
   <div>
-    <Button on:click={addToCart}>Add to Cart</Button>
+    <Button on:click={addToCart} mode="outline">Add to Cart</Button>
   </div>
 </div>

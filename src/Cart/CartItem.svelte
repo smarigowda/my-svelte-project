@@ -44,7 +44,7 @@
   <Button mode="outline" on:click={displayDescription}>
     {showDescription ? 'Hide Description' : 'Show Description'}
   </Button>
-  <Button on:click={removeFromCart}>Remove from Cart</Button>
+  <Button on:click={removeFromCart} mode="outline">Remove from Cart</Button>
   {#if showDescription}
     <p>Not available :(</p>
   {/if}
