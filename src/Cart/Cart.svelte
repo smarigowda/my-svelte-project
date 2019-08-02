@@ -3,17 +3,17 @@
   import CartItem from "./CartItem.svelte";
   import cartItems from "./cart-store.js";
 
-  let items;
+  // let items;
 
-  let unsubscribe = cartItems.subscribe(data => {
-    console.log(`[Cart]`, data);
-    items = data;
-  });
+  // let unsubscribe = cartItems.subscribe(data => {
+  //   console.log(`[Cart]`, data);
+  //   items = data;
+  // });
 
-  onDestroy(() => {
-    console.log("cart is destroyed...calling unsubscribe");
-    unsubscribe();
-  });
+  // onDestroy(() => {
+  //   console.log("cart is destroyed...calling unsubscribe");
+  //   unsubscribe();
+  // });
 </script>
 
 <style>
@@ -34,7 +34,7 @@
 <section>
   <h1>Cart</h1>
   <ul>
-    {#each items as item (item.id)}
+    {#each $cartItems as item (item.id)}
       <CartItem id={item.id} title={item.title} price={item.price} />
     {:else}
       <p>No items in cart yet!</p>
