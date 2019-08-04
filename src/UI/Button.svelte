@@ -1,6 +1,5 @@
 <script>
   export let type = null;
-  export let caption;
   export let href = null;
   export let mode = null;
 </script>

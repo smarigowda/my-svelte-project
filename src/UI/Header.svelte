@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
-    background-image: linear-gradient(to left, #8370e6, #ee0cf6);
+    background-image: linear-gradient(to left, #cf0056, #f60c0c);
   }
   h1 {
     color: white;
@@ -27,5 +27,5 @@
 </style>
 
 <header>
-  <h1>Welcome to Meet Up</h1>
+  <h1>Meet Up</h1>
 </header>
