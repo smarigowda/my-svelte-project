@@ -93,7 +93,9 @@
     <p>{description}</p>
   </div>
   <footer>
-    <Button type="button">Show Details</Button>
+    <Button type="button" on:click={() => {
+      dispatch('show-details');
+    }}>Show Details</Button>
     <Button
       type="button"
       mode="outline {isFavourite ? 'success' : null}"

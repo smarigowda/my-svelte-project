@@ -7,6 +7,7 @@
   import Button from "./UI/Button.svelte";
   import Modal from "./UI/Modal.svelte";
   import { meetupsStore } from "./Meetups/meetups-store.js";
+  import MeetupDetail from "./Meetups/MeetupDetail.svelte";
 
   // function reject(obj, keys) {
   //   return Object.assign(
@@ -32,6 +33,7 @@
   let description = "";
   let id = "";
   let editMeetup = false;
+  let showMeetupDetail = false;
 
   function handleAddMeetup(event) {
     console.log("add meetup function...");
@@ -46,6 +48,13 @@
   const handleToggleFavourite = event => {
     meetupsStore.toggleFavoutite(event.detail.id);
   };
+
+  const handleCloseDetails = () => {
+    showMeetupDetail = !showMeetupDetail;
+  }
+  const handleShowDetails = () => {
+    showMeetupDetail = true;
+  }
 </script>
 
 <style>
@@ -59,21 +68,25 @@
 
 <Header />
 <main id="meetups">
-  {#if !editMeetup}
-    <div class="meetup-controls">
-      <Button
-        type="button"
-        on:click={() => {
-          editMeetup = !editMeetup;
-        }}>
-        {editMeetup ? 'Close Form' : 'New Meetup'}
-      </Button>
-    </div>
+  {#if showMeetupDetail}
+    <MeetupDetail on:close-details={handleCloseDetails}/>
+  {:else}
+    {#if !editMeetup}
+      <div class="meetup-controls">
+        <Button
+          type="button"
+          on:click={() => {
+            editMeetup = !editMeetup;
+          }}>
+          {editMeetup ? 'Close Form' : 'New Meetup'}
+        </Button>
+      </div>
+    {/if}
+    {#if editMeetup}
+      <EditMeetup
+        on:addmeetup={handleAddMeetup}
+        on:cancelmodal={() => (editMeetup = false)} />
+    {/if}
+    <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} on:show-details={handleShowDetails}/>
   {/if}
-  {#if editMeetup}
-    <EditMeetup
-      on:addmeetup={handleAddMeetup}
-      on:cancelmodal={() => (editMeetup = false)} />
-  {/if}
-  <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} />
 </main>
