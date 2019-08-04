@@ -27,4 +27,15 @@ let meetupsList = [
   }
 ];
 
-export const meetupsStore = writable(meetupsList);
+const store = writable(meetupsList);
+
+export const meetupsStore = {
+    subscribe: store.subscribe,
+    addMeetup: newMeetup => {
+        store.update(data => {
+            let meetups = [...data, newMeetup];
+            console.log(meetups);
+            return meetups;
+        })
+    }
+}

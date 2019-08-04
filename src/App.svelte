@@ -31,7 +31,6 @@
   let email = "";
   let description = "";
   let id = "";
-
   let editMeetup = false;
 
   function addMeetup(event) {
@@ -40,8 +39,7 @@
       id: Math.random().toString(),
       ...event.detail
     };
-    meetups = [...meetups, newMeetup];
-    console.log(meetups);
+    meetupsStore.addMeetup(newMeetup);
     editMeetup = !editMeetup;
   }
 
@@ -68,7 +66,6 @@
 
 <Header />
 <main id="meetups">
-
   {#if !editMeetup}
     <div class="meetup-controls">
       <Button
