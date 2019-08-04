@@ -94,7 +94,7 @@
   </div>
   <footer>
     <Button type="button" on:click={() => {
-      dispatch('show-details');
+      dispatch('show-details', {id});
     }}>Show Details</Button>
     <Button
       type="button"
