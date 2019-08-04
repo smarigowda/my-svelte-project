@@ -7,4 +7,12 @@ const cart = writable([], () => {
   };
 });
 
-export default cart;
+export default {
+  subscribe: cart.subscribe,
+  update: newItem => {
+    cart.update(items => {
+      console.log(`[cart-store]`, items);
+      return [...items, newItem];
+    });
+  }
+};
