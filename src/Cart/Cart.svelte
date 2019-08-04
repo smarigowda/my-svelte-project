@@ -2,7 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import CartItem from "./CartItem.svelte";
   import cartItems from "./cart-store.js";
-  import { timer } from "../Store/timer-store.js";
+  // import { timer } from "../Store/timer-store.js";
 
   // let items;
 
@@ -16,18 +16,18 @@
   //   unsubscribe();
   // });
 
-  let unsubscribe;
+  // let unsubscribe;
 
-  onMount(() => {
-    unsubscribe = timer.subscribe(data => {
-      console.log("[Cart]", data);
-    });
-  });
+  // onMount(() => {
+  //   unsubscribe = timer.subscribe(data => {
+  //     console.log("[Cart]", data);
+  //   });
+  // });
 
-  onDestroy(() => {
-    console.log("[Cart] Unsubscribing from timer store...");
-    unsubscribe();
-  });
+  // onDestroy(() => {
+  //   console.log("[Cart] Unsubscribing from timer store...");
+  //   unsubscribe();
+  // });
 </script>
 
 <style>
