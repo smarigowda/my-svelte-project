@@ -4,7 +4,7 @@
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
   import { isEmpty, isValidEmail } from "../helpers/validation";
-  import { meetupsStore } from '../Meetups/meetups-store.js';
+  import { meetupsStore } from "../Meetups/meetups-store.js";
   export let editMeetupId;
 
   let title = "";
@@ -33,9 +33,9 @@
   let dispatch = createEventDispatcher();
 
   onMount(() => {
-    console.log('meetup mounted');
+    console.log("meetup mounted");
     console.log(`editMeetupId = ${editMeetupId}`);
-    if(editMeetupId) {
+    if (editMeetupId) {
       unsubscribe = meetupsStore.subscribe(meetups => {
         let meetup = meetups.find(item => item.id === editMeetupId);
         console.log(meetup);
@@ -45,7 +45,7 @@
   });
   onDestroy(() => {
     unsubscribe && unsubscribe();
-  })
+  });
 
   const addMeetup = () => {
     const newMeetup = {
@@ -59,6 +59,27 @@
     dispatch("addmeetup", newMeetup);
   };
 
+  const updateMeetup = () => {
+    const updatedMeetup = {
+      title,
+      subtitle,
+      address,
+      imageUrl,
+      email,
+      description,
+      id: editMeetupId
+    };
+    dispatch("updatemeetup", updatedMeetup);
+  };
+
+  const saveMeetup = () => {
+    if (editMeetupId) {
+      console.log("dispatch editmeetup event, pass the id as well");
+      updateMeetup();
+    } else {
+      addMeetup();
+    }
+  };
   const dispatchCancelModal = () => {
     dispatch("cancelmodal");
   };
@@ -73,7 +94,7 @@
 </style>
 
 <Modal on:cancelmodal title="New Meetup">
-  <form on:submit|preventDefault={addMeetup}>
+  <form on:submit|preventDefault={saveMeetup}>
     <Input
       id="title"
       label="Meetup Title"
@@ -136,7 +157,7 @@
     </Button>
     <!-- SAVE works outside form, because 2 way binding -->
     {#if isFormValid}
-      <Button type="button" on:click={addMeetup}>SAVE</Button>
+      <Button type="button" on:click={saveMeetup}>SAVE</Button>
     {/if}
   </div>
 </Modal>

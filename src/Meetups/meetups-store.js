@@ -30,23 +30,37 @@ let meetupsList = [
 const store = writable(meetupsList);
 
 export const meetupsStore = {
-    subscribe: store.subscribe,
-    addMeetup: newMeetup => {
-        store.update(data => {
-            let meetups = [...data, newMeetup];
-            console.log(meetups);
-            return meetups;
-        })
-    },
-    toggleFavoutite: id => {
-        store.update(data => {
-            let meetups = data.map(meetup => {
-                if (meetup.id === id) {
-                  meetup.isFavourite = !meetup.isFavourite;
-                }
-                return meetup;
-              });
-            return meetups;
-        });
-    }
-}
+  subscribe: store.subscribe,
+  addMeetup: newMeetup => {
+    store.update(data => {
+      let meetups = [...data, newMeetup];
+      console.log(meetups);
+      return meetups;
+    });
+  },
+  updateMeetup: updatedMeetup => {
+    console.log("updated meetup details =", updatedMeetup);
+    store.update(data => {
+      let meetups = data.map(d => {
+        if (d.id === updatedMeetup.id) {
+          return updatedMeetup;
+        } else {
+          return d;
+        }
+      });
+      console.log(meetups);
+      return meetups;
+    });
+  },
+  toggleFavoutite: id => {
+    store.update(data => {
+      let meetups = data.map(meetup => {
+        if (meetup.id === id) {
+          meetup.isFavourite = !meetup.isFavourite;
+        }
+        return meetup;
+      });
+      return meetups;
+    });
+  }
+};
