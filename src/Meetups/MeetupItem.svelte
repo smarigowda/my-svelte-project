@@ -102,6 +102,8 @@
       on:click={() => dispatch('togglefavourite', { id })}>
       Favourite
     </Button>
-    <Button href="mailto:{email}">{email}</Button>
+    <Button on:click={() => {
+      dispatch('edit-meetup', { id });
+    }}>Edit</Button>
   </footer>
 </article>

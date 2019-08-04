@@ -35,6 +35,7 @@
   let editMeetup = false;
   let showMeetupDetail = false;
   let detailsId = null;
+  let editMeetupId = null;
 
   function handleAddMeetup(event) {
     console.log("add meetup function...");
@@ -52,12 +53,17 @@
 
   const handleCloseDetails = () => {
     showMeetupDetail = !showMeetupDetail;
-  }
+  };
   const handleShowDetails = event => {
     console.log(event);
     detailsId = event.detail.id;
     showMeetupDetail = true;
-  }
+  };
+  const handleEditMeetup = event => {
+    console.log(event);
+    editMeetupId = event.detail.id;
+    editMeetup = true;
+  };
 </script>
 
 <style>
@@ -72,7 +78,7 @@
 <Header />
 <main id="meetups">
   {#if showMeetupDetail}
-    <MeetupDetail on:close-details={handleCloseDetails} {detailsId}/>
+    <MeetupDetail on:close-details={handleCloseDetails} {detailsId} />
   {:else}
     {#if !editMeetup}
       <div class="meetup-controls">
@@ -88,8 +94,13 @@
     {#if editMeetup}
       <EditMeetup
         on:addmeetup={handleAddMeetup}
-        on:cancelmodal={() => (editMeetup = false)} />
+        on:cancelmodal={() => (editMeetup = false)}
+        {editMeetupId} />
     {/if}
-    <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} on:show-details={handleShowDetails}/>
+    <MeetupGrid
+      {meetups}
+      on:togglefavourite={handleToggleFavourite}
+      on:show-details={handleShowDetails}
+      on:edit-meetup={handleEditMeetup} />
   {/if}
 </main>

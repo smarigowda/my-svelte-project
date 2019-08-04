@@ -4,5 +4,5 @@
 </script>
 
 {#each meetups as meetup}
-  <MeetupItem {...meetup} on:togglefavourite on:show-details/>
+  <MeetupItem {...meetup} on:togglefavourite on:show-details on:edit-meetup/>
 {/each}

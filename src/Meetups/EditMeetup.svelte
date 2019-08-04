@@ -1,10 +1,11 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import Input from "../UI/Input.svelte";
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
   import { isEmpty, isValidEmail } from "../helpers/validation";
 
+  export let editMeetupId;
   let title = "";
   let subtitle = "";
   let address = "";
@@ -26,7 +27,13 @@
     isImageUrlValid &
     isEmailValid &
     isDescriptionValid;
+
   let dispatch = createEventDispatcher();
+
+  onMount(() => {
+    console.log('meetup mounted');
+    console.log(`editMeetupId = ${editMeetupId}`)
+  })
 
   const addMeetup = () => {
     const newMeetup = {
