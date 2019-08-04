@@ -4,14 +4,16 @@
   import Button from "../UI/Button.svelte";
   import Modal from "../UI/Modal.svelte";
   import { isEmpty, isValidEmail } from "../helpers/validation";
-
+  import { meetupsStore } from '../Meetups/meetups-store.js';
   export let editMeetupId;
+
   let title = "";
   let subtitle = "";
   let address = "";
   let imageUrl = "";
   let email = "";
   let description = "";
+  let unsubscribe = null;
 
   $: isTitleValid = !isEmpty(title);
   $: isSubTitleValid = !isEmpty(subtitle);
@@ -32,7 +34,17 @@
 
   onMount(() => {
     console.log('meetup mounted');
-    console.log(`editMeetupId = ${editMeetupId}`)
+    console.log(`editMeetupId = ${editMeetupId}`);
+    if(editMeetupId) {
+      unsubscribe = meetupsStore.subscribe(meetups => {
+        let meetup = meetups.find(item => item.id === editMeetupId);
+        console.log(meetup);
+        ({ title, subtitle, address, imageUrl, email, description } = meetup);
+      });
+    }
+  });
+  onDestroy(() => {
+    unsubscribe && unsubscribe();
   })
 
   const addMeetup = () => {

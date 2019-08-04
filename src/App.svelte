@@ -45,6 +45,7 @@
     };
     meetupsStore.addMeetup(newMeetup);
     editMeetup = !editMeetup;
+    editMeetupId = null;
   }
 
   const handleToggleFavourite = event => {
@@ -94,7 +95,10 @@
     {#if editMeetup}
       <EditMeetup
         on:addmeetup={handleAddMeetup}
-        on:cancelmodal={() => (editMeetup = false)}
+        on:cancelmodal={() => { 
+          editMeetup = false;
+          editMeetupId = null;
+        }}
         {editMeetupId} />
     {/if}
     <MeetupGrid
