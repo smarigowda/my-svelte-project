@@ -37,5 +37,16 @@ export const meetupsStore = {
             console.log(meetups);
             return meetups;
         })
+    },
+    toggleFavoutite: id => {
+        store.update(data => {
+            let meetups = data.map(meetup => {
+                if (meetup.id === id) {
+                  meetup.isFavourite = !meetup.isFavourite;
+                }
+                return meetup;
+              });
+            return meetups;
+        });
     }
 }

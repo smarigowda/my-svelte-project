@@ -33,7 +33,7 @@
   let id = "";
   let editMeetup = false;
 
-  function addMeetup(event) {
+  function handleAddMeetup(event) {
     console.log("add meetup function...");
     const newMeetup = {
       id: Math.random().toString(),
@@ -44,14 +44,7 @@
   }
 
   const handleToggleFavourite = event => {
-    console.log(event);
-    meetups = meetups.map(meetup => {
-      if (meetup.id === event.detail.id) {
-        meetup.isFavourite = !meetup.isFavourite;
-      }
-      return meetup;
-    });
-    console.log("handleToggleFavourite", meetups);
+    meetupsStore.toggleFavoutite(event.detail.id);
   };
 </script>
 
@@ -79,7 +72,7 @@
   {/if}
   {#if editMeetup}
     <EditMeetup
-      on:addmeetup={addMeetup}
+      on:addmeetup={handleAddMeetup}
       on:cancelmodal={() => (editMeetup = false)} />
   {/if}
   <MeetupGrid {meetups} on:togglefavourite={handleToggleFavourite} />
