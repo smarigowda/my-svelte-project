@@ -9,10 +9,19 @@ const cart = writable([], () => {
 
 export default {
   subscribe: cart.subscribe,
-  update: newItem => {
+  addToCart: newItem => {
     cart.update(items => {
       console.log(`[cart-store]`, items);
       return [...items, newItem];
+    });
+  },
+  removeFromCart: id => {
+    console.log('[cart-store] removing item with id =', id);
+    cart.update(items => {
+      let data = items.filter(d => {
+        return d.id !== id;
+      });
+      return data;
     });
   }
 };
