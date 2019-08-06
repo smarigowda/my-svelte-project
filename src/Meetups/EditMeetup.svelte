@@ -159,5 +159,15 @@
     {#if isFormValid}
       <Button type="button" on:click={saveMeetup}>SAVE</Button>
     {/if}
+    {#if editMeetupId}
+      <Button
+        type="button"
+        on:click={() => {
+          dispatch('delete-meetup');
+          meetupsStore.removeMeetup(editMeetupId);
+        }}>
+        DELETE
+      </Button>
+    {/if}
   </div>
 </Modal>

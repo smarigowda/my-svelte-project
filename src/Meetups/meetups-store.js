@@ -38,6 +38,11 @@ export const meetupsStore = {
       return meetups;
     });
   },
+  removeMeetup: meetupId => {
+    store.update(data => {
+      return data.filter(d => d.id !== meetupId);
+    })
+  },
   updateMeetup: updatedMeetup => {
     console.log("updated meetup details =", updatedMeetup);
     store.update(data => {

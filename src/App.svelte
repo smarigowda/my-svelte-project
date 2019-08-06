@@ -53,6 +53,10 @@
     editMeetupId = null;
     meetupsStore.updateMeetup(event.detail);
   }
+  function handleDeleteMeetup() {
+    editMeetup = !editMeetup;
+    editMeetupId = null;
+  }
 
   const handleToggleFavourite = event => {
     meetupsStore.toggleFavoutite(event.detail.id);
@@ -102,6 +106,7 @@
       <EditMeetup
         on:addmeetup={handleAddMeetup}
         on:updatemeetup={handleUpdateMeetup}
+        on:delete-meetup={handleDeleteMeetup}
         on:cancelmodal={() => {
           editMeetup = false;
           editMeetupId = null;
