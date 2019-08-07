@@ -20,12 +20,22 @@
   // }
 
   let meetups = [];
+  let filtered = []
+
+  let favOnly = false;
+
+  $: console.log("favOnly =", favOnly);
 
   meetupsStore.subscribe(data => {
     meetups = data;
     console.log("meetups", meetups);
   });
 
+  $: if (favOnly) {
+    filtered = meetups.filter(d => d.isFavourite === true);
+  } else {
+    filtered = meetups;
+  }
   let title = "";
   let subtitle = "";
   let address = "";
@@ -79,9 +89,6 @@
 </script>
 
 <style>
-  #meetups {
-    /* margin-top: 5rem; */
-  }
   .meetup-controls {
     margin: 1rem;
   }
@@ -93,7 +100,9 @@
 
 <Header />
 <section id="meetup-filter">
-  <MeetupFilter />
+  <MeetupFilter
+    on:select-all={() => (favOnly = false)}
+    on:select-fav={() => (favOnly = true)} />
 </section>
 <main id="meetups">
   {#if showMeetupDetail}
@@ -122,7 +131,7 @@
         {editMeetupId} />
     {/if}
     <MeetupGrid
-      {meetups}
+      meetups={filtered}
       on:togglefavourite={handleToggleFavourite}
       on:show-details={handleShowDetails}
       on:edit-meetup={handleEditMeetup} />

@@ -1,3 +1,10 @@
+<script>
+import { createEventDispatcher } from 'svelte';
+
+const dispatch = createEventDispatcher();
+let filter = 'all';
+
+</script>
 <style>
   div {
     font-size: 0px;
@@ -34,6 +41,12 @@
 </style>
 
 <div>
-  <button>ALL</button>
-  <button>FAV</button>
+  <button class:active={filter === 'all'} on:click={ () => {
+    dispatch('select-all');
+    filter = 'all';
+  }}>ALL</button>
+  <button class:active={filter === 'fav'}  on:click={ () => {
+    dispatch('select-fav');
+    filter = 'fav'
+  }}>FAV</button>
 </div>
