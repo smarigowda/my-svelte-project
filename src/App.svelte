@@ -8,7 +8,6 @@
   import Modal from "./UI/Modal.svelte";
   import { meetupsStore } from "./Meetups/meetups-store.js";
   import MeetupDetail from "./Meetups/MeetupDetail.svelte";
-  import MeetupFilter from "./Meetups/MeetupFilter.svelte";
 
   // function reject(obj, keys) {
   //   return Object.assign(
@@ -20,22 +19,12 @@
   // }
 
   let meetups = [];
-  let filtered = []
-
-  let favOnly = false;
-
-  $: console.log("favOnly =", favOnly);
 
   meetupsStore.subscribe(data => {
     meetups = data;
     console.log("meetups", meetups);
   });
 
-  $: if (favOnly) {
-    filtered = meetups.filter(d => d.isFavourite === true);
-  } else {
-    filtered = meetups;
-  }
   let title = "";
   let subtitle = "";
   let address = "";
@@ -92,18 +81,10 @@
   .meetup-controls {
     margin: 1rem;
   }
-  #meetup-filter {
-    margin: 1rem;
-    margin-top: 5rem;
-  }
 </style>
 
 <Header />
-<section id="meetup-filter">
-  <MeetupFilter
-    on:select-all={() => (favOnly = false)}
-    on:select-fav={() => (favOnly = true)} />
-</section>
+
 <main id="meetups">
   {#if showMeetupDetail}
     <MeetupDetail on:close-details={handleCloseDetails} {detailsId} />
@@ -131,7 +112,7 @@
         {editMeetupId} />
     {/if}
     <MeetupGrid
-      meetups={filtered}
+      {meetups}
       on:togglefavourite={handleToggleFavourite}
       on:show-details={handleShowDetails}
       on:edit-meetup={handleEditMeetup} />
