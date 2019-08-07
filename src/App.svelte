@@ -8,6 +8,7 @@
   import Modal from "./UI/Modal.svelte";
   import { meetupsStore } from "./Meetups/meetups-store.js";
   import MeetupDetail from "./Meetups/MeetupDetail.svelte";
+  import MeetupFilter from "./Meetups/MeetupFilter.svelte";
 
   // function reject(obj, keys) {
   //   return Object.assign(
@@ -79,14 +80,21 @@
 
 <style>
   #meetups {
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
   }
   .meetup-controls {
     margin: 1rem;
   }
+  #meetup-filter {
+    margin: 1rem;
+    margin-top: 5rem;
+  }
 </style>
 
 <Header />
+<section id="meetup-filter">
+  <MeetupFilter />
+</section>
 <main id="meetups">
   {#if showMeetupDetail}
     <MeetupDetail on:close-details={handleCloseDetails} {detailsId} />
