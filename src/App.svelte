@@ -77,29 +77,12 @@
   };
 </script>
 
-<style>
-  .meetup-controls {
-    margin: 1rem;
-  }
-</style>
-
 <Header />
 
 <main id="meetups">
   {#if showMeetupDetail}
     <MeetupDetail on:close-details={handleCloseDetails} {detailsId} />
   {:else}
-    {#if !editMeetup}
-      <div class="meetup-controls">
-        <Button
-          type="button"
-          on:click={() => {
-            editMeetup = !editMeetup;
-          }}>
-          {editMeetup ? 'Close Form' : 'New Meetup'}
-        </Button>
-      </div>
-    {/if}
     {#if editMeetup}
       <EditMeetup
         on:addmeetup={handleAddMeetup}
@@ -115,6 +98,7 @@
       {meetups}
       on:togglefavourite={handleToggleFavourite}
       on:show-details={handleShowDetails}
-      on:edit-meetup={handleEditMeetup} />
+      on:edit-meetup={handleEditMeetup} 
+      on:new-meetup={() => { editMeetup = true }}/>
   {/if}
 </main>
