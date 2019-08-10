@@ -24,6 +24,10 @@
     display: flex;
     justify-content: space-around;
   }
+  #meetup-list {
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
 
 <section id="meetup-controls">
@@ -38,6 +42,8 @@
     New Meetup
   </Button>
 </section>
-{#each filtered as meetup}
-  <MeetupItem {...meetup} on:togglefavourite on:show-details on:edit-meetup />
-{/each}
+<section id="meetup-list">
+  {#each filtered as meetup}
+    <MeetupItem {...meetup} on:togglefavourite on:show-details on:edit-meetup />
+  {/each}
+</section>

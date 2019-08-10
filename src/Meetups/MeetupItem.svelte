@@ -68,11 +68,11 @@
     margin: 0;
   }
 
-  .meetup-item {
-    & + & {
-      margin-top: 2rem;
-    }
-  }
+  // .meetup-item {
+  //   & + & {
+  //     margin-top: 2rem;
+  //   }
+  // }
 </style>
 
 <article class="meetup-item">
