@@ -78,7 +78,7 @@
         class="card"
         style="background: {card.color}; transform: rotateZ({$cardPos[i].rotation}deg)
         translateX({$cardPos[i].dx}px)"
-        on:click={discard.bind(this, i)} />
+        on:click={() => { discard(i)} } />
     {/each}
   </div>
 </div>

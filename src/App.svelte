@@ -2,6 +2,7 @@
   import { writable } from "svelte/store";
   import { tweened } from "svelte/motion";
   import { cubicIn } from "svelte/easing";
+  import Spring from './Spring.svelte';
 
   const progress = tweened(0, {
     delay: 2000,
@@ -14,4 +15,5 @@
   }, 0);
 </script>
 
-<progress value={$progress} />
+<!-- <progress value={$progress} /> -->
+<Spring />
